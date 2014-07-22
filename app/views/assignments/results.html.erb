@@ -1,0 +1,38 @@
+
+    <%- model_class = Assignment -%>
+    <div class="page-header">
+      <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+    </div>
+
+    <dl class="dl-horizontal">
+      <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+      <dd><%= @assignment.name %></dd>
+
+
+
+    </dl>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>
+          Student
+        </th>
+        <th>
+          Score
+        </th>
+      </tr>
+      </thead>
+    <% @assignment.attempts.each do |attempt|  %>
+      <tr>
+        <td>
+          <%=link_to attempt.user.email ,"/users/#{attempt.user.id}/assignments/#{attempt.assignment.id}/result"%>
+        </td>
+        <td>
+          <%= attempt.score %>
+        </td>
+      </tr>
+
+
+
+<%end%>
+    </table>

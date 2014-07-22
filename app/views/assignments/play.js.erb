@@ -1,0 +1,104 @@
+function CHOICE(id,text){
+    this.id=id;
+    this.text=text;
+}
+function QUESTION(id,text,count)
+{
+    this.id=id;
+    this.text=text;
+    this.choice_count=count;
+
+}
+var Game={};
+Game.fps=50;
+Game.question_count="<%= @assignment.questions.count %>";
+Game.questions=[];
+var i=0;
+<% @assignment.questions.each do |question| %>
+    Game.questions.push(new QUESTION("<%= question.id %>","<%= question.text %>","<%= question.choices.count %>"));
+    Game.questions[i].choices=[];
+var j=0;
+    <%question.choices.each do |choice| %>
+        Game.questions[i].choices.push(new CHOICE("<%= choice.id %>","<%= choice.text %>"));
+
+
+++j;
+    <%end%>
+
+            ++i;
+<%end%>
+$('#game_container').addClass('hidden');
+window.setInterval(function(){
+            if( $('#timer').html()!=null)
+            {   var x=$('#timer').html();
+                if(x!='0')
+                    x=x-1;
+                $('#timer').html(x);
+            }
+        }, 1000
+);
+$('#game_container').append('<div id="question_place"></div>');
+$('#game_container').append('<div id="timer" ></div>');
+$('#game_container').append('<div id="choice_container"></div>');
+
+Game.current_question=0;
+Game.run=function(){
+    this.update();
+    this.display();
+
+};
+
+Game.update=function()
+{
+
+
+
+};
+Game.display=function()
+{
+
+};
+
+
+Game.start=function()
+{
+    $('#question_place').html(this.questions[this.current_question].text);
+
+};
+
+/*
+$('#game_container').addClass('hidden');
+window.setInterval(function(){
+            if( $('#timer').html()!=null)
+            {   var x=$('#timer').html();
+                if(x!='0')
+                    x=x-1;
+                $('#timer').html(x);
+            }
+        }, 1000
+);
+
+$('#game_container').append('<div id="question_place"></div>');
+$('#game_container').append('<div id="timer" ></div>');
+$('#game_container').append('<div id="choice_container"></div>');
+
+//$('#game_container').removeClass('hidden');
+<%@assignment.questions.each do |question|  %>
+
+    $('#question_place').text("<%=escape_javascript question.text  %>");
+    $('#timer').text('10');
+    <% question.choices.each do |choice| %>
+    var choice="<div class='choice' id='<%=choice.id.to_s %>'><%= choice.text %></div>";
+
+    $('#choice_container').append(choice);
+<%end %>
+
+
+
+<%end%>
+
+
+
+
+
+*/
