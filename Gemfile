@@ -8,6 +8,7 @@ gem 'rails', '3.2.13'
 
 
 gem 'twitter-bootstrap-rails'
+
 gem 'carrierwave'
 gem 'jbuilder'
 
