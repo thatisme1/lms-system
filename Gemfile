@@ -6,6 +6,7 @@ gem 'rails', '3.2.13'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+gem 'bundler', '1.6.3'
 
 gem 'twitter-bootstrap-rails'
 
